@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		47E24D7B2AD5623600E365C7 /* StarJedi.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 47E24D7A2AD5623600E365C7 /* StarJedi.ttf */; };
+		479C13282ADED32B00015861 /* StarJedi.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 479C13272ADED32B00015861 /* StarJedi.ttf */; };
 		D96933C42AD5305000B73703 /* CharacterViewDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96933C32AD5305000B73703 /* CharacterViewDetail.swift */; };
 		D98596B42AD45EC900139FE4 /* ShipsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98596B32AD45EC900139FE4 /* ShipsView.swift */; };
 		D98596B62AD45F1600139FE4 /* CharactersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98596B52AD45F1600139FE4 /* CharactersView.swift */; };
@@ -21,7 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		47E24D7A2AD5623600E365C7 /* StarJedi.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = StarJedi.ttf; path = "../../../SwiftUI/Trabalho_Star_Wars/04_10_2023/StarWars_Version4_12_build - cópia/Backup media/Fontes/StarJedi.ttf"; sourceTree = "<group>"; };
+		479C13272ADED32B00015861 /* StarJedi.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = StarJedi.ttf; sourceTree = "<group>"; };
 		47E24D7C2AD5626900E365C7 /* StarWars-3-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "StarWars-3-Info.plist"; sourceTree = SOURCE_ROOT; };
 		D96933C32AD5305000B73703 /* CharacterViewDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewDetail.swift; sourceTree = "<group>"; };
 		D98596B32AD45EC900139FE4 /* ShipsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipsView.swift; sourceTree = "<group>"; };
@@ -67,7 +67,7 @@
 			isa = PBXGroup;
 			children = (
 				47E24D7C2AD5626900E365C7 /* StarWars-3-Info.plist */,
-				47E24D7A2AD5623600E365C7 /* StarJedi.ttf */,
+				479C13272ADED32B00015861 /* StarJedi.ttf */,
 				D98596B72AD45F3600139FE4 /* PlanetsView.swift */,
 				D98596B32AD45EC900139FE4 /* ShipsView.swift */,
 				D9FC08762AD43B9D0046D746 /* SplashScreenView.swift */,
@@ -149,7 +149,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D9FC086E2AD4391A0046D746 /* Preview Assets.xcassets in Resources */,
-				47E24D7B2AD5623600E365C7 /* StarJedi.ttf in Resources */,
+				479C13282ADED32B00015861 /* StarJedi.ttf in Resources */,
 				D9FC086B2AD4391A0046D746 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
