@@ -122,7 +122,7 @@ struct CharacterViewDetail: View {
              .foregroundColor(Color(red: 1, green: 0.91, blue: 0.12))
              Spacer()
              */
-        }
+        } .navigationBarHidden(true)
                .background(
             Image("background")
                 .scaledToFill()

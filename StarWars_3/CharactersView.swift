@@ -76,16 +76,21 @@ struct CharactersView: View {
                                     .font(Font.custom("StarJedi Special Edition", size: 20))
                                     .foregroundColor(Color(red: 1, green: 0.91, blue: 0.12))
                                     .frame(maxWidth: .infinity, alignment: .center)
+                                 //   .navigationBarHidden(true) // Para retirar a barra do back
+
                             }
                             //
                             .listRowBackground(Color.clear)
                             .listRowSeparator(.hidden) //Retira as barras entre elementos da lista
-                            
+                           // .navigationBarHidden(true) // Para retirar a barra do back
+
                         }
                     }
                     .listStyle(PlainListStyle())
                     .scrollContentBackground(.hidden)
                     .listRowBackground(Color.clear)
+                   // .navigationBarHidden(true) // Para retirar a barra do back
+
                     .background(
                      Image("background")
                          .resizable()
@@ -126,7 +131,7 @@ struct CharactersView: View {
                 print("Error decoding JSON: \(error)")
             }
         }.resume()
-    }
+         }
 }
 
 struct CharactersView_Previews: PreviewProvider {
