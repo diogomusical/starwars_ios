@@ -11,7 +11,7 @@ import SwiftUI
 struct StarWars_3App: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            SplashScreenView()
         }
     }
 }

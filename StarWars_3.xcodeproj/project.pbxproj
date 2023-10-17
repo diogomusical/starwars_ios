@@ -7,18 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		47E24D7B2AD5623600E365C7 /* StarJedi.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 47E24D7A2AD5623600E365C7 /* StarJedi.ttf */; };
+		D96933C42AD5305000B73703 /* CharacterViewDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96933C32AD5305000B73703 /* CharacterViewDetail.swift */; };
+		D98596B42AD45EC900139FE4 /* ShipsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98596B32AD45EC900139FE4 /* ShipsView.swift */; };
+		D98596B62AD45F1600139FE4 /* CharactersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98596B52AD45F1600139FE4 /* CharactersView.swift */; };
+		D98596B82AD45F3600139FE4 /* PlanetsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98596B72AD45F3600139FE4 /* PlanetsView.swift */; };
+		D98596BA2AD4602B00139FE4 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98596B92AD4602B00139FE4 /* Character.swift */; };
 		D9FC08672AD439180046D746 /* StarWars_3App.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FC08662AD439180046D746 /* StarWars_3App.swift */; };
 		D9FC08692AD439180046D746 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FC08682AD439180046D746 /* ContentView.swift */; };
 		D9FC086B2AD4391A0046D746 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9FC086A2AD4391A0046D746 /* Assets.xcassets */; };
 		D9FC086E2AD4391A0046D746 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9FC086D2AD4391A0046D746 /* Preview Assets.xcassets */; };
+		D9FC08772AD43B9D0046D746 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FC08762AD43B9D0046D746 /* SplashScreenView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		47E24D7A2AD5623600E365C7 /* StarJedi.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = StarJedi.ttf; path = "../../../SwiftUI/Trabalho_Star_Wars/04_10_2023/StarWars_Version4_12_build - cópia/Backup media/Fontes/StarJedi.ttf"; sourceTree = "<group>"; };
+		47E24D7C2AD5626900E365C7 /* StarWars-3-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "StarWars-3-Info.plist"; sourceTree = SOURCE_ROOT; };
+		D96933C32AD5305000B73703 /* CharacterViewDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewDetail.swift; sourceTree = "<group>"; };
+		D98596B32AD45EC900139FE4 /* ShipsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipsView.swift; sourceTree = "<group>"; };
+		D98596B52AD45F1600139FE4 /* CharactersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersView.swift; sourceTree = "<group>"; };
+		D98596B72AD45F3600139FE4 /* PlanetsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetsView.swift; sourceTree = "<group>"; };
+		D98596B92AD4602B00139FE4 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		D9FC08632AD439180046D746 /* StarWars_3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StarWars_3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9FC08662AD439180046D746 /* StarWars_3App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarWars_3App.swift; sourceTree = "<group>"; };
 		D9FC08682AD439180046D746 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D9FC086A2AD4391A0046D746 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D9FC086D2AD4391A0046D746 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		D9FC08762AD43B9D0046D746 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,8 +66,16 @@
 		D9FC08652AD439180046D746 /* StarWars_3 */ = {
 			isa = PBXGroup;
 			children = (
+				47E24D7C2AD5626900E365C7 /* StarWars-3-Info.plist */,
+				47E24D7A2AD5623600E365C7 /* StarJedi.ttf */,
+				D98596B72AD45F3600139FE4 /* PlanetsView.swift */,
+				D98596B32AD45EC900139FE4 /* ShipsView.swift */,
+				D9FC08762AD43B9D0046D746 /* SplashScreenView.swift */,
 				D9FC08662AD439180046D746 /* StarWars_3App.swift */,
+				D98596B52AD45F1600139FE4 /* CharactersView.swift */,
 				D9FC08682AD439180046D746 /* ContentView.swift */,
+				D98596B92AD4602B00139FE4 /* Character.swift */,
+				D96933C32AD5305000B73703 /* CharacterViewDetail.swift */,
 				D9FC086A2AD4391A0046D746 /* Assets.xcassets */,
 				D9FC086C2AD4391A0046D746 /* Preview Content */,
 			);
@@ -126,6 +149,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D9FC086E2AD4391A0046D746 /* Preview Assets.xcassets in Resources */,
+				47E24D7B2AD5623600E365C7 /* StarJedi.ttf in Resources */,
 				D9FC086B2AD4391A0046D746 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -137,8 +161,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D98596B82AD45F3600139FE4 /* PlanetsView.swift in Sources */,
+				D98596B42AD45EC900139FE4 /* ShipsView.swift in Sources */,
+				D98596BA2AD4602B00139FE4 /* Character.swift in Sources */,
+				D98596B62AD45F1600139FE4 /* CharactersView.swift in Sources */,
 				D9FC08692AD439180046D746 /* ContentView.swift in Sources */,
 				D9FC08672AD439180046D746 /* StarWars_3App.swift in Sources */,
+				D9FC08772AD43B9D0046D746 /* SplashScreenView.swift in Sources */,
+				D96933C42AD5305000B73703 /* CharacterViewDetail.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,7 +226,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -251,7 +281,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -271,6 +301,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"StarWars_3/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "StarWars-3-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -299,6 +330,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"StarWars_3/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "StarWars-3-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

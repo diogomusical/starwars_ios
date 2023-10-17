@@ -1,6 +1,7 @@
 {
-  "colors" : [
+  "images" : [
     {
+      "filename" : "logotipo_starwars.png",
       "idiom" : "universal"
     }
   ],
