@@ -105,7 +105,8 @@ struct CharactersView: View {
     }
     
     func fetchCharacters() {
-        guard let url = URL(string: "https://swapi.dev/api/people/") else {
+        guard let url = URL(string: "https://swapi.py4e.com/api/people/")
+        else {
             return
         }
         
