@@ -84,5 +84,69 @@
             landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EB59B7CB-D452-4A1D-8A4F-16001629BA52"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StarWars_3/StarWars_3App.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "7"
+            endingLineNumber = "7"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1F522058-71F9-4889-A852-268C9EDD8B20"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StarWars_3/CharactersView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
+            landmarkName = "fetchCharacters()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "1F522058-71F9-4889-A852-268C9EDD8B20 - 66ddfcf0eec7115c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "StarWars_3.CharactersView.fetchCharacters() -&gt; ()"
+                  moduleName = "StarWars_3"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/diogocoelhodasilva/Documents/Diogo%20Coelho%20da%20Silva/Axians/Versao_3_17_10/StarWars_3.05_alteracoes_feitas_por_Alexandre_porJoao_Diogo_copia/StarWars_3/CharactersView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "113"
+                  endingLineNumber = "113"
+                  offsetFromSymbolStart = "288">
+               </Location>
+               <Location
+                  uuid = "1F522058-71F9-4889-A852-268C9EDD8B20 - f31689fc76fb51c7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in StarWars_3.CharactersView.fetchCharacters() -&gt; ()"
+                  moduleName = "StarWars_3"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/diogocoelhodasilva/Documents/Diogo%20Coelho%20da%20Silva/Axians/Versao_3_17_10/StarWars_3.05_alteracoes_feitas_por_Alexandre_porJoao_Diogo_copia/StarWars_3/CharactersView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "114"
+                  endingLineNumber = "114"
+                  offsetFromSymbolStart = "328">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

@@ -25,12 +25,19 @@ struct CharactersView: View {
     @State private var isAPILoaded = false
     @State private var isLoading = true
     @State private var searchTerm = ""
+    @State private var isAscendingOrder = true
     
     var resultsSearch: [Character] {
             if searchTerm.isEmpty {
-                return characters
+                return characters.sorted {
+                    isAscendingOrder ? $0.name < $1.name : $0.name > $1.name
+                }
             } else {
-                return characters.filter { $0.name.contains(searchTerm) }
+                return characters.filter {
+                    $0.name.lowercased().contains(searchTerm.lowercased())
+                }.sorted {
+                    isAscendingOrder ? $0.name < $1.name : $0.name > $1.name
+                }
             }
         }
     
@@ -66,6 +73,22 @@ struct CharactersView: View {
                             .listRowBackground(Color.clear)
 
                         }
+                        Button(action: {
+                                           isAscendingOrder.toggle()
+                                       }) {
+                                           Image(systemName: "arrow.up")
+                                               .padding()
+                                       }
+                                       .foregroundColor(isAscendingOrder ? .gray : .blue) // Agora, cinza indica ordem ascendente
+
+                                       Button(action: {
+                                           isAscendingOrder.toggle()
+                                       }) {
+                                           Image(systemName: "arrow.down")
+                                               .padding()
+                                       }
+                                       .foregroundColor(isAscendingOrder ? .blue : .gray) // Agora, azul indica ordem descendente
+                                   
                         
                         ForEach(resultsSearch.indices, id: \.self) { index in
                             
@@ -103,7 +126,7 @@ struct CharactersView: View {
             //}
         }
     }
-    
+ 
     func fetchCharacters() {
         guard let url = URL(string: "https://swapi.py4e.com/api/people/")
         else {

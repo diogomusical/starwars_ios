@@ -6,3 +6,11 @@
 //
 
 import Foundation
+
+struct Planet: Codable {
+    let name: String
+}
+
+struct PlanetResponse: Codable {
+let resultsPlanet: [Planet]
+}

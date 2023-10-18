@@ -16,6 +16,7 @@ struct Character: Codable {
     let eyeColor: String?
     let birthYear: String?
     let gender: String
+    let homeworld: String
     
 }
 

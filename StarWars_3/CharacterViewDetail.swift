@@ -85,6 +85,12 @@ struct CharacterViewDetail: View {
                         .multilineTextAlignment(.center)
                         .foregroundColor(Color(red: 1, green: 0.91, blue: 0.12))
                         .frame(maxWidth: .infinity, alignment: .trailing)
+                    
+                    Text("HomeWorld")
+                        .font(Font.custom("StarJedi Special Edition", size: 14))
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(Color(red: 1, green: 0.91, blue: 0.12))
+                        .frame(maxWidth: .infinity, alignment: .trailing)
                 }
                 
                 VStack {
@@ -105,7 +111,45 @@ struct CharacterViewDetail: View {
                         .multilineTextAlignment(.center)
                         .foregroundColor(Color(red: 1, green: 0.91, blue: 0.12))
                         .frame(maxWidth: .infinity, alignment: .leading)
+                    Text("\(character.homeworld)")
+                        .font(Font.custom("StarJedi Special Edition", size: 14))
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(Color(red: 1, green: 0.91, blue: 0.12))
+                        .frame(maxWidth: .infinity, alignment: .leading)
                 }
+                
+                
+               /*  func fetchPlanets() {
+                     guard let url = URL(string: "https://swapi.py4e.com/api/people/")
+                     else {
+                         return
+                     }
+                     
+                     URLSession.shared.dataTask(with: url) { dataPlanets, responsePlanets, errorPlanets in
+                         if let errorPlanets = errorPlanets {
+                             print("Error fetching data: \(error)")
+                             return
+                         }
+                         
+                         guard let dataPlanets = dataPlanets else {
+                             print("No data received")
+                             return
+                         }
+                         
+                         do {
+                             let planetResponse = try JSONDecoder().decode(PlanetResponse.self, from: dataPlanets)
+                             
+                             DispatchQueue.main.async {
+                                 self.planets = planetResponse.resultsPlanet
+                                 self.isLoading = false
+                             }
+                         } catch {
+                             print("Error decoding JSON: \(error)")
+                         }
+                     }.resume()
+                      }
+                 */
+
             }
             
             /*Text("Hair Color: \(character.hairColor ?? "N/A")")
@@ -130,13 +174,14 @@ struct CharacterViewDetail: View {
            )
         // .navigationBarTitle("Character Details")
         //.background(Image("background"))
+        
         }
 }
 
 
 struct CharacterViewDetail_Previews: PreviewProvider {
     static var previews: some View {
-        CharacterViewDetail(character: Character(name: "Luke Skywalker", birth_year: "data de nascimento", height: "172 cm", mass: "77 kg", hairColor: "Blond", eyeColor: "Blue", birthYear: "19 BBY", gender: "Male"))
+        CharacterViewDetail(character: Character(name: "Luke Skywalker", birth_year: "data de nascimento", height: "172 cm", mass: "77 kg", hairColor: "Blond", eyeColor: "Blue", birthYear: "19 BBY", gender: "Male", homeworld: "homeworld_exemplo"))
     }
 }
 
