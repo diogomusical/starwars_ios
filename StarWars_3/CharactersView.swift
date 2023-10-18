@@ -19,117 +19,59 @@ import SwiftUI
  }
  }*/
 
-
 struct CharactersView: View {
     @State private var characters: [Character] = []
     @State private var isAPILoaded = false
     @State private var isLoading = true
     @State private var searchTerm = ""
     @State private var isAscendingOrder = true
+    @State private var sortBy = 0 // 0 para nome, 1 para ano de nascimento
+    
     
     var resultsSearch: [Character] {
-            if searchTerm.isEmpty {
-                return characters.sorted {
-                    isAscendingOrder ? $0.name < $1.name : $0.name > $1.name
-                }
-            } else {
-                return characters.filter {
-                    $0.name.lowercased().contains(searchTerm.lowercased())
-                }.sorted {
-                    isAscendingOrder ? $0.name < $1.name : $0.name > $1.name
+        var sortedCharacters = characters
+        
+        switch sortBy {
+        case 0: // Ordenar por nome
+            sortedCharacters.sort { (char1, char2) in
+                return char1.name < char2.name
+            }
+        case 1: // Ordenar por ano de nascimento
+            sortedCharacters.sort { (char1, char2) in
+                if let year1 = char1.birthYear, let year2 = char2.birthYear {
+                    return year1 < year2
+                } else if char1.birthYear != nil {
+                    return true
+                } else {
+                    return false
                 }
             }
+        default:
+            break
         }
+        
+        if !isAscendingOrder {
+            sortedCharacters.reverse()
+        }
+        
+        if searchTerm.isEmpty {
+            return sortedCharacters
+        } else {
+            return sortedCharacters.filter {
+                $0.name.lowercased().contains(searchTerm.lowercased())
+            }
+        }
+    }
     
     init() {
         UITableView.appearance().separatorStyle = .none
-      //  UISearchBar.appearance().backgroundColor = UIColor.green
-      //  UISearchBar.appearance().tintColor = UIColor.green
-      //  UISearchBar.appearance().barTintColor = UIColor.yellow
-        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).backgroundColor = .white //Para colocar o fundo somente da barra de pesquisa a branco e letrsa pretas
-        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = .black //Para colocar o fundo somente da barra de pesquisa a branco e letras pretas
-        UISearchBar.appearance().showsCancelButton = false // Para remover o botão cancelar
-
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).backgroundColor = .white
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = .black
+        UISearchBar.appearance().showsCancelButton = false
     }
     
-    var body: some View {
-        NavigationView {
-            if isLoading {
-                ProgressView()
-                    .progressViewStyle(CircularProgressViewStyle())
-                    .onAppear(perform: fetchCharacters)
-            } else {
-                //VStack{
-                    
-                    
-                    List {
-                        Section() {
-                            Image("logotipo_starwars")
-                                   .resizable()
-                                   //.aspectRatio(contentMode: .fit)
-                                   .frame(width: 118,height: 71)
-                                   .frame(maxWidth: .infinity, maxHeight: .infinity) //Para alinhar ao centro a imagem
-                            .listRowInsets(EdgeInsets())
-                            .listRowBackground(Color.clear)
-
-                        }
-                        Button(action: {
-                                           isAscendingOrder.toggle()
-                                       }) {
-                                           Image(systemName: "arrow.up")
-                                               .padding()
-                                       }
-                                       .foregroundColor(isAscendingOrder ? .gray : .blue) // Agora, cinza indica ordem ascendente
-
-                                       Button(action: {
-                                           isAscendingOrder.toggle()
-                                       }) {
-                                           Image(systemName: "arrow.down")
-                                               .padding()
-                                       }
-                                       .foregroundColor(isAscendingOrder ? .blue : .gray) // Agora, azul indica ordem descendente
-                                   
-                        
-                        ForEach(resultsSearch.indices, id: \.self) { index in
-                            
-                            NavigationLink(destination: CharacterViewDetail(character: resultsSearch[index])) {
-                                //   VStack(alignment: .center) {
-                                Text(resultsSearch[index].name.lowercased())
-                                
-                                    .font(Font.custom("StarJedi Special Edition", size: 20))
-                                    .foregroundColor(Color(red: 1, green: 0.91, blue: 0.12))
-                                    .frame(maxWidth: .infinity, alignment: .center)
-                                 //   .navigationBarHidden(true) // Para retirar a barra do back
-
-                            }
-                            //
-                            .listRowBackground(Color.clear)
-                            .listRowSeparator(.hidden) //Retira as barras entre elementos da lista
-                           // .navigationBarHidden(true) // Para retirar a barra do back
-
-                        }
-                    }
-                    .listStyle(PlainListStyle())
-                    .scrollContentBackground(.hidden)
-                    .listRowBackground(Color.clear)
-                   // .navigationBarHidden(true) // Para retirar a barra do back
-
-                    .background(
-                     Image("background")
-                         .resizable()
-                         .edgesIgnoringSafeArea(.all)
-                    )
-                    .searchable(text: $searchTerm)
-                
-                
-                }
-            //}
-        }
-    }
- 
     func fetchCharacters() {
-        guard let url = URL(string: "https://swapi.py4e.com/api/people/")
-        else {
+        guard let url = URL(string: "https://swapi.py4e.com/api/people/") else {
             return
         }
         
@@ -155,8 +97,68 @@ struct CharactersView: View {
                 print("Error decoding JSON: \(error)")
             }
         }.resume()
-         }
+    }
+    
+    var body: some View {
+        NavigationView {
+            if isLoading {
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle())
+                    .onAppear(perform: fetchCharacters)
+            } else {
+                List {
+                    Section {
+                        Image("logotipo_starwars")
+                            .resizable()
+                            .frame(width: 118, height: 71)
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            .listRowInsets(EdgeInsets())
+                            .listRowBackground(Color.clear)
+                    }
+                    
+                    Picker("Ordenar por", selection: $sortBy) {
+                        Text("Nome").tag(0)
+                        Text("Ano de Nascimento").tag(1)
+                    }
+                    .pickerStyle(SegmentedPickerStyle())
+                    
+                    HStack {
+                        Button(action: {
+                            isAscendingOrder.toggle()
+                        }) {
+                            Image(systemName: isAscendingOrder ? "arrow.up" : "arrow.down")
+                                .padding()
+                        }
+                        .foregroundColor(.blue)
+                    }
+                    
+                    ForEach(resultsSearch.indices, id: \.self) { index in
+                        NavigationLink(destination: CharacterViewDetail(character: resultsSearch[index])) {
+                            Text(resultsSearch[index].name.lowercased())
+                                .font(Font.custom("StarJedi Special Edition", size: 20))
+                                .foregroundColor(Color(red: 1, green: 0.91, blue: 0.12))
+                                .frame(maxWidth: .infinity, alignment: .center)
+                        }
+                        .listRowBackground(Color.clear)
+                        .listRowSeparator(.hidden)
+                    }
+                }
+                .listStyle(PlainListStyle())
+                .scrollContentBackground(.hidden)
+                .listRowBackground(Color.clear)
+                .background(
+                    Image("background")
+                        .resizable()
+                        .edgesIgnoringSafeArea(.all)
+                )
+                .searchable(text: $searchTerm)
+            }
+        }
+    }
 }
+
+
+
 
 struct CharactersView_Previews: PreviewProvider {
     static var previews: some View {
