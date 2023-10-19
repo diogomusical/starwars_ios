@@ -24,8 +24,10 @@ struct CharacterViewDetail: View {
         .navigationBarTitle("Detalhes do Personagem")
     }
 }*/
+
 struct CharacterViewDetail: View {
     let character: Character
+    @State private var homeworldName: String?
 
     var body: some View {
         VStack {
@@ -33,25 +35,22 @@ struct CharacterViewDetail: View {
                 .font(Font.custom("StarJedi Special Edition", size: 20))
                 .multilineTextAlignment(.center)
                 .foregroundColor(Color(red: 1, green: 0.91, blue: 0.12))
-            
+
             Text("Biographical Information")
                 .font(Font.custom("StarJedi Special Edition", size: 20))
                 .multilineTextAlignment(.center)
                 .foregroundColor(Color(red: 1, green: 0.91, blue: 0.12))
-            
+
             HStack {
                 VStack {
-                    // Conteúdo alinhado à esquerda
-                    Text("Born " )
+                    Text("Born ")
                         .font(Font.custom("StarJedi Special Edition", size: 14))
                         .multilineTextAlignment(.center)
                         .foregroundColor(Color(red: 1, green: 0.91, blue: 0.12))
-                        .multilineTextAlignment(.leading)
                         .frame(maxWidth: .infinity, alignment: .trailing)
                 }
-                
+
                 VStack {
-                    // Conteúdo alinhado à direita
                     Text(" \(character.birth_year)" )
                         .font(Font.custom("StarJedi Special Edition", size: 14))
                         .multilineTextAlignment(.center)
@@ -59,124 +58,101 @@ struct CharacterViewDetail: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
             }
-            
-            
+
             Text("Physical Description")
                 .font(Font.custom("StarJedi Special Edition", size: 20))
                 .multilineTextAlignment(.center)
                 .foregroundColor(Color(red: 1, green: 0.91, blue: 0.12))
-            //Falta as espécies
+
             HStack {
                 VStack {
-                    // Conteúdo alinhado à esquerda
                     Text("Gender ")
                         .font(Font.custom("StarJedi Special Edition", size: 14))
                         .multilineTextAlignment(.center)
                         .foregroundColor(Color(red: 1, green: 0.91, blue: 0.12))
                         .frame(maxWidth: .infinity, alignment: .trailing)
-                    //Falta as espécies
+
                     Text("Height ")
                         .font(Font.custom("StarJedi Special Edition", size: 14))
                         .multilineTextAlignment(.center)
                         .foregroundColor(Color(red: 1, green: 0.91, blue: 0.12))
                         .frame(maxWidth: .infinity, alignment: .trailing)
+
                     Text("Mass ")
                         .font(Font.custom("StarJedi Special Edition", size: 14))
                         .multilineTextAlignment(.center)
                         .foregroundColor(Color(red: 1, green: 0.91, blue: 0.12))
                         .frame(maxWidth: .infinity, alignment: .trailing)
-                    
-                    Text("HomeWorld")
+
+                    Text("Planet ")
                         .font(Font.custom("StarJedi Special Edition", size: 14))
                         .multilineTextAlignment(.center)
                         .foregroundColor(Color(red: 1, green: 0.91, blue: 0.12))
                         .frame(maxWidth: .infinity, alignment: .trailing)
                 }
-                
+
                 VStack {
-                    // Conteúdo alinhado à direita
                     Text(" \(character.gender)")
                         .font(Font.custom("StarJedi Special Edition", size: 14))
                         .multilineTextAlignment(.center)
                         .foregroundColor(Color(red: 1, green: 0.91, blue: 0.12))
                         .frame(maxWidth: .infinity, alignment: .leading)
-                    //Falta as espécies
+
                     Text(" \(character.height)")
                         .font(Font.custom("StarJedi Special Edition", size: 14))
                         .multilineTextAlignment(.center)
                         .foregroundColor(Color(red: 1, green: 0.91, blue: 0.12))
                         .frame(maxWidth: .infinity, alignment: .leading)
+
                     Text(" \(character.mass)")
                         .font(Font.custom("StarJedi Special Edition", size: 14))
                         .multilineTextAlignment(.center)
                         .foregroundColor(Color(red: 1, green: 0.91, blue: 0.12))
                         .frame(maxWidth: .infinity, alignment: .leading)
-                    Text("\(character.homeworld)")
-                        .font(Font.custom("StarJedi Special Edition", size: 14))
-                        .multilineTextAlignment(.center)
-                        .foregroundColor(Color(red: 1, green: 0.91, blue: 0.12))
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                }
-                
-                
-               /*  func fetchPlanets() {
-                     guard let url = URL(string: "https://swapi.py4e.com/api/people/")
-                     else {
-                         return
-                     }
-                     
-                     URLSession.shared.dataTask(with: url) { dataPlanets, responsePlanets, errorPlanets in
-                         if let errorPlanets = errorPlanets {
-                             print("Error fetching data: \(error)")
-                             return
-                         }
-                         
-                         guard let dataPlanets = dataPlanets else {
-                             print("No data received")
-                             return
-                         }
-                         
-                         do {
-                             let planetResponse = try JSONDecoder().decode(PlanetResponse.self, from: dataPlanets)
-                             
-                             DispatchQueue.main.async {
-                                 self.planets = planetResponse.resultsPlanet
-                                 self.isLoading = false
-                             }
-                         } catch {
-                             print("Error decoding JSON: \(error)")
-                         }
-                     }.resume()
-                      }
-                 */
 
+                    if let homeworldName = homeworldName {
+                        Text(homeworldName)
+                            .font(Font.custom("StarJedi Special Edition", size: 14))
+                            .multilineTextAlignment(.center)
+                            .foregroundColor(Color(red: 1, green: 0.91, blue: 0.12))
+                           
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+                }
             }
-            
-            /*Text("Hair Color: \(character.hairColor ?? "N/A")")
-             .font(Font.custom("StarJedi Special Edition", size: 14))
-             .multilineTextAlignment(.center)
-             .foregroundColor(Color(red: 1, green: 0.91, blue: 0.12))
-             Text("Eye Color: \(character.eyeColor ?? "N/A")")
-             .font(Font.custom("StarJedi Special Edition", size: 14))
-             .multilineTextAlignment(.center)
-             .foregroundColor(Color(red: 1, green: 0.91, blue: 0.12))
-             Text("Birth Year: \(character.birthYear ?? "N/A")")
-             .font(Font.custom("StarJedi Special Edition", size: 14))
-             .multilineTextAlignment(.center)
-             .foregroundColor(Color(red: 1, green: 0.91, blue: 0.12))
-             Spacer()
-             */
-        } .navigationBarHidden(true)
-               .background(
+        }
+        .onAppear {
+            if let homeworldURL = URL(string: character.homeworld) {
+                let request = URLRequest(url: homeworldURL)
+
+                URLSession.shared.dataTask(with: request) { data, response, error in
+                    if let error = error {
+                        print("Error fetching homeworld data: \(error)")
+                        return
+                    }
+
+                    if let data = data {
+                        do {
+                            let planet = try JSONDecoder().decode(Planet.self, from: data)
+                            self.homeworldName = planet.name
+                        } catch {
+                            print("Error decoding JSON for homeworld: \(error)")
+                        }
+                    }
+                }.resume()
+            }
+        }
+        .navigationBarHidden(true)
+        .background(
             Image("background")
                 .scaledToFill()
                 .edgesIgnoringSafeArea(.all)
-           )
-        // .navigationBarTitle("Character Details")
-        //.background(Image("background"))
-        
-        }
+        )
+    }
 }
+
+
+
 
 
 struct CharacterViewDetail_Previews: PreviewProvider {
