@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		479C13282ADED32B00015861 /* StarJedi.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 479C13272ADED32B00015861 /* StarJedi.ttf */; };
 		479C132A2ADEDDB000015861 /* Planet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479C13292ADEDDB000015861 /* Planet.swift */; };
+		47A23CF42AE137F500443C1A /* Species.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A23CF32AE137F500443C1A /* Species.swift */; };
+		47A23CF62AE16ADD00443C1A /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A23CF52AE16ADD00443C1A /* ButtonView.swift */; };
+		47A23CF82AE1728600443C1A /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A23CF72AE1728600443C1A /* TextView.swift */; };
 		D96933C42AD5305000B73703 /* CharacterViewDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96933C32AD5305000B73703 /* CharacterViewDetail.swift */; };
 		D98596B42AD45EC900139FE4 /* ShipsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98596B32AD45EC900139FE4 /* ShipsView.swift */; };
 		D98596B62AD45F1600139FE4 /* CharactersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98596B52AD45F1600139FE4 /* CharactersView.swift */; };
@@ -24,6 +27,9 @@
 /* Begin PBXFileReference section */
 		479C13272ADED32B00015861 /* StarJedi.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = StarJedi.ttf; sourceTree = "<group>"; };
 		479C13292ADEDDB000015861 /* Planet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Planet.swift; sourceTree = "<group>"; };
+		47A23CF32AE137F500443C1A /* Species.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Species.swift; sourceTree = "<group>"; };
+		47A23CF52AE16ADD00443C1A /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
+		47A23CF72AE1728600443C1A /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		47E24D7C2AD5626900E365C7 /* StarWars-3-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "StarWars-3-Info.plist"; sourceTree = SOURCE_ROOT; };
 		D96933C32AD5305000B73703 /* CharacterViewDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewDetail.swift; sourceTree = "<group>"; };
 		D98596B32AD45EC900139FE4 /* ShipsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipsView.swift; sourceTree = "<group>"; };
@@ -78,7 +84,10 @@
 				D9FC08682AD439180046D746 /* ContentView.swift */,
 				D98596B92AD4602B00139FE4 /* Character.swift */,
 				479C13292ADEDDB000015861 /* Planet.swift */,
+				47A23CF32AE137F500443C1A /* Species.swift */,
 				D96933C32AD5305000B73703 /* CharacterViewDetail.swift */,
+				47A23CF72AE1728600443C1A /* TextView.swift */,
+				47A23CF52AE16ADD00443C1A /* ButtonView.swift */,
 				D9FC086A2AD4391A0046D746 /* Assets.xcassets */,
 				D9FC086C2AD4391A0046D746 /* Preview Content */,
 			);
@@ -164,13 +173,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47A23CF42AE137F500443C1A /* Species.swift in Sources */,
 				D98596B82AD45F3600139FE4 /* PlanetsView.swift in Sources */,
 				D98596B42AD45EC900139FE4 /* ShipsView.swift in Sources */,
 				D98596BA2AD4602B00139FE4 /* Character.swift in Sources */,
 				479C132A2ADEDDB000015861 /* Planet.swift in Sources */,
 				D98596B62AD45F1600139FE4 /* CharactersView.swift in Sources */,
+				47A23CF62AE16ADD00443C1A /* ButtonView.swift in Sources */,
 				D9FC08692AD439180046D746 /* ContentView.swift in Sources */,
 				D9FC08672AD439180046D746 /* StarWars_3App.swift in Sources */,
+				47A23CF82AE1728600443C1A /* TextView.swift in Sources */,
 				D9FC08772AD43B9D0046D746 /* SplashScreenView.swift in Sources */,
 				D96933C42AD5305000B73703 /* CharacterViewDetail.swift in Sources */,
 			);

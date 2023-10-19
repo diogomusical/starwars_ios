@@ -8,11 +8,27 @@
 import SwiftUI
 
 struct ButtonView: View {
+    @State internal var text: String
+    @State internal var typeFont: String = "StarJediSpecialEdition"
+    @State internal var sizeFont: Double
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Rectangle()
+            .foregroundColor(.clear)
+            //.frame(width:  350, height: 45)
+            .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
+            .background(Color(red: 1.0, green: 0.91, blue: 0.12))
+            .cornerRadius(36)
+            .overlay(
+        Text(text)
+            .font(Font.custom(typeFont, size: sizeFont))
+            .multilineTextAlignment(.center)
+            .foregroundColor(Color.black)
+            .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
+          //  .frame(width: widthFrameText, height: heightFrameText, alignment: .top)
+            )
     }
 }
 
 #Preview {
-    ButtonView()
+    ButtonView(text: "Example Button", sizeFont: 32.0)
 }

@@ -4,20 +4,7 @@
 //
 //  Created by Diogo on 09/10/2023.
 //
-
 import SwiftUI
-
-/*struct CustomTableView: UIViewRepresentable {
- func makeUIView(context: Context) -> UITableView {
- let tableView = UITableView()
- tableView.backgroundColor = .red
- return tableView
- }
- 
- func updateUIView(_ uiView: UITableView, context: Context) {
- // Update any properties or configurations here, if needed.
- }
- }*/
 
 struct CharactersView: View {
     @State private var characters: [Character] = []
@@ -26,7 +13,6 @@ struct CharactersView: View {
     @State private var searchTerm = ""
     @State private var isAscendingOrder = true
     @State private var sortBy = 0 // 0 para nome, 1 para ano de nascimento
-    
     
     var resultsSearch: [Character] {
         var sortedCharacters = characters
@@ -106,59 +92,98 @@ struct CharactersView: View {
                     .progressViewStyle(CircularProgressViewStyle())
                     .onAppear(perform: fetchCharacters)
             } else {
-                List {
-                    Section {
-                        Image("logotipo_starwars")
-                            .resizable()
-                            .frame(width: 118, height: 71)
-                            .frame(maxWidth: .infinity, maxHeight: .infinity)
-                            .listRowInsets(EdgeInsets())
-                            .listRowBackground(Color.clear)
-                    }
-                    
-                    Picker("Ordenar por", selection: $sortBy) {
-                        Text("Nome").tag(0)
-                        Text("Ano de Nascimento").tag(1)
-                    }
-                    .pickerStyle(SegmentedPickerStyle())
-                    
+                VStack {
                     HStack {
                         Button(action: {
-                            isAscendingOrder.toggle()
+                            sortBy = 0 // Ordenar por nome
                         }) {
-                            Image(systemName: isAscendingOrder ? "arrow.up" : "arrow.down")
+                            Text("name")
+                                .frame(width: 78, height: 25)
+                                .font(Font.custom("StarJedi Special Edition", size: 14))
+                                .multilineTextAlignment(.center)
+                               // .padding()
+                                .background(sortBy == 0 ? Color(red: 1, green: 0.91, blue: 0.12) : Color.white)
+                                .cornerRadius(36)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 36)
+                                        .inset(by: 0.5)
+                                        .stroke(Color(red: 1, green: 0.91, blue: 0.12), lineWidth: 1)
+                                )
+                        }
+                        .foregroundColor(.black)
+                        //.background(sortBy == 0 ? Color.yellow : .white)
+
+                        Button(action: {
+                            sortBy = 1 // Ordenar por ano de nascimento
+                        }) {
+                            Text("year")
+                                .frame(width: 78, height: 25)
+                                .font(Font.custom("StarJedi Special Edition", size: 14))
+                                .multilineTextAlignment(.center)
+                              //  .padding()
+                                .background(sortBy == 1 ? Color(red: 1, green: 0.91, blue: 0.12) : Color.white)
+                                .cornerRadius(36)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 36)
+                                        .inset(by: 0.5)
+                                        .stroke(Color(red: 1, green: 0.91, blue: 0.12), lineWidth: 1)
+                                )
+                        }
+                        .foregroundColor(.black)
+                    }
+                    .padding()
+
+                    HStack {
+                        Button(action: {
+                            isAscendingOrder = true
+                        }) {
+                            Text("Ascendente")
                                 .padding()
+                                .background(isAscendingOrder ? Color.blue : Color.gray)
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
                         }
-                        .foregroundColor(.blue)
+                        .padding()
+
+                        Button(action: {
+                            isAscendingOrder = false
+                        }) {
+                            Text("Descendente")
+                                .padding()
+                                .background(!isAscendingOrder ? Color.blue : Color.gray)
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
+                        }
+                        .padding()
                     }
+                    .padding()
                     
-                    ForEach(resultsSearch.indices, id: \.self) { index in
-                        NavigationLink(destination: CharacterViewDetail(character: resultsSearch[index])) {
-                            Text(resultsSearch[index].name.lowercased())
-                                .font(Font.custom("StarJedi Special Edition", size: 20))
-                                .foregroundColor(Color(red: 1, green: 0.91, blue: 0.12))
-                                .frame(maxWidth: .infinity, alignment: .center)
+                    List {
+                        ForEach(resultsSearch.indices, id: \.self) { index in
+                            NavigationLink(destination: CharacterViewDetail(character: resultsSearch[index])) {
+                                Text(resultsSearch[index].name.lowercased())
+                                    .font(Font.custom("StarJedi Special Edition", size: 20))
+                                    .foregroundColor(Color(red: 1, green: 0.91, blue: 0.12))
+                                    .frame(maxWidth: .infinity, alignment: .center)
+                            }
+                            .listRowBackground(Color.clear)
+                            .listRowSeparator(.hidden)
                         }
-                        .listRowBackground(Color.clear)
-                        .listRowSeparator(.hidden)
                     }
+                    .listStyle(PlainListStyle())
+                    .scrollContentBackground(.hidden)
+                    .listRowBackground(Color.clear)
+                    .background(
+                        Image("background")
+                            .resizable()
+                            .edgesIgnoringSafeArea(.all)
+                    )
+                    .searchable(text: $searchTerm)
                 }
-                .listStyle(PlainListStyle())
-                .scrollContentBackground(.hidden)
-                .listRowBackground(Color.clear)
-                .background(
-                    Image("background")
-                        .resizable()
-                        .edgesIgnoringSafeArea(.all)
-                )
-                .searchable(text: $searchTerm)
             }
         }
     }
 }
-
-
-
 
 struct CharactersView_Previews: PreviewProvider {
     static var previews: some View {

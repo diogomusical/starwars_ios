@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ShipsView: View {
+    @State var text = "Exemplo1"
     var body: some View {
         Text("Página de Naves Espaciais")
             .font(.title)
