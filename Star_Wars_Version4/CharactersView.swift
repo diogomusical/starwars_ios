@@ -4,6 +4,7 @@
 //
 //  Created by Diogo on 09/10/2023.
 //
+
 import SwiftUI
 
 struct CharactersView: View {
@@ -93,6 +94,15 @@ struct CharactersView: View {
                     .onAppear(perform: fetchCharacters)
             } else {
                 VStack {
+                    Image("logotipo_starwars")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 118, height: 71) // Ajuste o tamanho conforme necessário
+                    
+                    TextField("Search", text: $searchTerm)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .padding()
+                    
                     HStack {
                         Button(action: {
                             sortBy = 0 // Ordenar por nome
@@ -101,7 +111,6 @@ struct CharactersView: View {
                                 .frame(width: 78, height: 25)
                                 .font(Font.custom("StarJedi Special Edition", size: 14))
                                 .multilineTextAlignment(.center)
-                               // .padding()
                                 .background(sortBy == 0 ? Color(red: 1, green: 0.91, blue: 0.12) : Color.white)
                                 .cornerRadius(36)
                                 .overlay(
@@ -111,8 +120,7 @@ struct CharactersView: View {
                                 )
                         }
                         .foregroundColor(.black)
-                        //.background(sortBy == 0 ? Color.yellow : .white)
-
+                        
                         Button(action: {
                             sortBy = 1 // Ordenar por ano de nascimento
                         }) {
@@ -120,7 +128,6 @@ struct CharactersView: View {
                                 .frame(width: 78, height: 25)
                                 .font(Font.custom("StarJedi Special Edition", size: 14))
                                 .multilineTextAlignment(.center)
-                              //  .padding()
                                 .background(sortBy == 1 ? Color(red: 1, green: 0.91, blue: 0.12) : Color.white)
                                 .cornerRadius(36)
                                 .overlay(
@@ -130,31 +137,21 @@ struct CharactersView: View {
                                 )
                         }
                         .foregroundColor(.black)
-                    }
-                    .padding()
-
-                    HStack {
+                        
                         Button(action: {
-                            isAscendingOrder = true
+                            isAscendingOrder.toggle()
                         }) {
-                            Text("Ascendente")
-                                .padding()
-                                .background(isAscendingOrder ? Color.blue : Color.gray)
-                                .foregroundColor(.white)
-                                .cornerRadius(10)
+                            if isAscendingOrder {Image("down_yellow").rotationEffect(.degrees(180)) }
+                            else {Image("up_white")}
                         }
-                        .padding()
-
+                        
                         Button(action: {
-                            isAscendingOrder = false
+                            isAscendingOrder.toggle()
                         }) {
-                            Text("Descendente")
-                                .padding()
-                                .background(!isAscendingOrder ? Color.blue : Color.gray)
-                                .foregroundColor(.white)
-                                .cornerRadius(10)
+                            if isAscendingOrder {Image("up_white").rotationEffect(.degrees(180))}
+                            else {Image("down_yellow") }
                         }
-                        .padding()
+                        
                     }
                     .padding()
                     
@@ -173,15 +170,30 @@ struct CharactersView: View {
                     .listStyle(PlainListStyle())
                     .scrollContentBackground(.hidden)
                     .listRowBackground(Color.clear)
-                    .background(
-                        Image("background")
-                            .resizable()
-                            .edgesIgnoringSafeArea(.all)
-                    )
-                    .searchable(text: $searchTerm)
                 }
+                .background(
+                    Image("background")
+                        .resizable()
+                        .scaledToFill()
+                        .edgesIgnoringSafeArea(.all)
+                )
             }
         }
+    }
+}
+
+
+
+struct FilterSheetView: View {
+    @Environment(\.presentationMode) var presentationMode
+
+    var body: some View {
+        // Conteúdo da sua Sheet de filtros aqui
+        Text("Filtros")
+            .padding()
+            .onTapGesture {
+                presentationMode.wrappedValue.dismiss()
+            }
     }
 }
 
@@ -190,3 +202,5 @@ struct CharactersView_Previews: PreviewProvider {
         CharactersView()
     }
 }
+
+
