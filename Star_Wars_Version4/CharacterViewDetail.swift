@@ -12,103 +12,61 @@ struct CharacterViewDetail: View {
         VStack(alignment: .center) {
             TextView(text: character.name, sizeFont: 20)
             
-            VStack(alignment: .leading) {
+            VStack(
+                //alignment: .leading
+            ) {
                 
                 
                 
                 
                 
-                TextView(text: "biographical information", sizeFont: 20)
+                TextView(text: "biographical information", sizeFont: 20, texthalignment: .leading)
                 
                 HStack {
                     VStack {
-                        Text("Born ")
-                            .font(Font.custom("StarJedi Special Edition", size: 14))
-                            .multilineTextAlignment(.center)
-                            .foregroundColor(Color(red: 1, green: 0.91, blue: 0.12))
-                            .frame(maxWidth: .infinity, alignment: .trailing)
+                        TextView(text: "Born ", sizeFont: 14, texthalignment: .trailing)
                     }
                     
                     VStack {
-                        Text(" \(character.birth_year)" )
-                            .font(Font.custom("StarJedi Special Edition", size: 14))
-                            .multilineTextAlignment(.center)
-                            .foregroundColor(Color(red: 1, green: 0.91, blue: 0.12))
-                            .frame(maxWidth: .infinity, alignment: .leading)
+                        TextView(text: "  \(character.birth_year)", sizeFont: 14, texthalignment: .leading)
                     }
                 }
                 
-                Text("Physical Description")
-                    .font(Font.custom("StarJedi Special Edition", size: 20))
-                    .multilineTextAlignment(.center)
-                    .foregroundColor(Color(red: 1, green: 0.91, blue: 0.12))
+                TextView(text: "Physical Description", sizeFont: 20, texthalignment: .leading)
                 
                 HStack {
                     VStack {
-                        Text("Gender ")
-                            .font(Font.custom("StarJedi Special Edition", size: 14))
-                            .multilineTextAlignment(.center)
-                            .foregroundColor(Color(red: 1, green: 0.91, blue: 0.12))
-                            .frame(maxWidth: .infinity, alignment: .trailing)
-                        
-                        Text("Height ")
-                            .font(Font.custom("StarJedi Special Edition", size: 14))
-                            .multilineTextAlignment(.center)
-                            .foregroundColor(Color(red: 1, green: 0.91, blue: 0.12))
-                            .frame(maxWidth: .infinity, alignment: .trailing)
-                        
-                        Text("Mass ")
-                            .font(Font.custom("StarJedi Special Edition", size: 14))
-                            .multilineTextAlignment(.center)
-                            .foregroundColor(Color(red: 1, green: 0.91, blue: 0.12))
-                            .frame(maxWidth: .infinity, alignment: .trailing)
-                        
-                        Text("HomeWorld")
-                            .font(Font.custom("StarJedi Special Edition", size: 14))
-                            .multilineTextAlignment(.center)
-                            .foregroundColor(Color(red: 1, green: 0.91, blue: 0.12))
-                            .frame(maxWidth: .infinity, alignment: .trailing)
-                        
-                        Text("Species")
-                            .font(Font.custom("StarJedi Special Edition", size: 14))
-                            .multilineTextAlignment(.center)
-                            .foregroundColor(Color(red: 1, green: 0.91, blue: 0.12))
-                            .frame(maxWidth: .infinity, alignment: .trailing)
+                        TextView(text: "Gender ", sizeFont: 14, texthalignment: .trailing)
+                    
+                        TextView(text: "Height ", sizeFont: 14, texthalignment: .trailing)
+   
+                        TextView(text: "Mass ", sizeFont: 14, texthalignment: .trailing)
+             
+                        TextView(text: "HomeWorld ", sizeFont: 14, texthalignment: .trailing)
+            
+                        TextView(text: "Species ", sizeFont: 14, texthalignment: .trailing)
                     }
                     
                     VStack {
-                        Text(" \(character.gender)")
-                            .font(Font.custom("StarJedi Special Edition", size: 14))
-                            .multilineTextAlignment(.center)
-                            .foregroundColor(Color(red: 1, green: 0.91, blue: 0.12))
-                            .frame(maxWidth: .infinity, alignment: .leading)
                         
-                        Text(" \(character.height)")
-                            .font(Font.custom("StarJedi Special Edition", size: 14))
-                            .multilineTextAlignment(.center)
-                            .foregroundColor(Color(red: 1, green: 0.91, blue: 0.12))
-                            .frame(maxWidth: .infinity, alignment: .leading)
+                        TextView(text: " \(character.gender)", sizeFont: 14, texthalignment: .leading)
                         
-                        Text(" \(character.mass)")
-                            .font(Font.custom("StarJedi Special Edition", size: 14))
-                            .multilineTextAlignment(.center)
-                            .foregroundColor(Color(red: 1, green: 0.91, blue: 0.12))
-                            .frame(maxWidth: .infinity, alignment: .leading)
+                        
+                        TextView(text: " \(character.height)", sizeFont: 14, texthalignment: .leading)
+                       
+                        
+                        TextView(text: " \(character.mass)", sizeFont: 14, texthalignment: .leading)
+                       
                         
                         if let homeworldName = homeworldName {
-                            Text(" " + homeworldName)
-                                .font(Font.custom("StarJedi Special Edition", size: 14))
-                                .multilineTextAlignment(.center)
-                                .foregroundColor(Color(red: 1, green: 0.91, blue: 0.12))
-                                .frame(maxWidth: .infinity, alignment: .leading)
+                            TextView(text: " \(homeworldName)", sizeFont: 14, texthalignment: .leading)
+                           
+                          
                         }
                         
                         if let speciesName = speciesName {
-                            Text(" " + speciesName)
-                                .font(Font.custom("StarJedi Special Edition", size: 14))
-                                .multilineTextAlignment(.center)
-                                .foregroundColor(Color(red: 1, green: 0.91, blue: 0.12))
-                                .frame(maxWidth: .infinity, alignment: .leading)
+                            TextView(text: " \(speciesName)", sizeFont: 14, texthalignment: .leading)
+                 
                         }
                     }
                 }
