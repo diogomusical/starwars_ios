@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+import SwiftUI
+
 struct CharactersView: View {
     @State private var characters: [Character] = []
     @State private var isAPILoaded = false
@@ -14,7 +16,8 @@ struct CharactersView: View {
     @State private var searchTerm = ""
     @State private var isAscendingOrder = true
     @State private var sortBy = 0 // 0 para nome, 1 para ano de nascimento
-    
+    @State private var isSheetPresented = false // Adicionado para controlar a apresentação da sheet
+
     var resultsSearch: [Character] {
         var sortedCharacters = characters
         
@@ -85,7 +88,7 @@ struct CharactersView: View {
             }
         }.resume()
     }
-    
+
     var body: some View {
         NavigationView {
             if isLoading {
@@ -97,13 +100,27 @@ struct CharactersView: View {
                     Image("logotipo_starwars")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 118, height: 71) // Ajuste o tamanho conforme necessário
-                    
-                    TextField("Search", text: $searchTerm)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .padding()
-                    
+                        .frame(width: 118, height: 71)
+
                     HStack {
+                        TextField("Search", text: $searchTerm)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+
+                        
+                    }
+                    .padding()
+
+                    HStack {
+                        Button(action: {
+                            isSheetPresented.toggle() // Mostra a sheet ao pressionar o botão
+                        }) {
+                            Image("sliders")
+                                .resizable()
+                                .frame(width: 24, height: 24)
+                        }
+                        .sheet(isPresented: $isSheetPresented) {
+                            FilterSheetView()
+                        }
                         Button(action: {
                             sortBy = 0 // Ordenar por nome
                         }) {
@@ -120,7 +137,7 @@ struct CharactersView: View {
                                 )
                         }
                         .foregroundColor(.black)
-                        
+
                         Button(action: {
                             sortBy = 1 // Ordenar por ano de nascimento
                         }) {
@@ -137,24 +154,23 @@ struct CharactersView: View {
                                 )
                         }
                         .foregroundColor(.black)
-                        
+
                         Button(action: {
                             isAscendingOrder.toggle()
                         }) {
                             if isAscendingOrder {Image("down_yellow").rotationEffect(.degrees(180)) }
                             else {Image("up_white")}
                         }
-                        
+
                         Button(action: {
                             isAscendingOrder.toggle()
                         }) {
                             if isAscendingOrder {Image("up_white").rotationEffect(.degrees(180))}
                             else {Image("down_yellow") }
                         }
-                        
                     }
                     .padding()
-                    
+
                     List {
                         ForEach(resultsSearch.indices, id: \.self) { index in
                             NavigationLink(destination: CharacterViewDetail(character: resultsSearch[index])) {
@@ -182,8 +198,6 @@ struct CharactersView: View {
     }
 }
 
-
-
 struct FilterSheetView: View {
     @Environment(\.presentationMode) var presentationMode
 
@@ -196,6 +210,8 @@ struct FilterSheetView: View {
             }
     }
 }
+
+
 
 struct CharactersView_Previews: PreviewProvider {
     static var previews: some View {
