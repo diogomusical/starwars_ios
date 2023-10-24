@@ -22,6 +22,7 @@
 		47BA62D32AC2F4C000F1DC95 /* Characters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BA62D22AC2F4C000F1DC95 /* Characters.swift */; };
 		47BA62D52AC2F50600F1DC95 /* CharactersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BA62D42AC2F50600F1DC95 /* CharactersViewModel.swift */; };
 		47BA62D72AC2F56E00F1DC95 /* DetailViewCharacters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BA62D62AC2F56E00F1DC95 /* DetailViewCharacters.swift */; };
+		47FD8F7A2AE8055400F0C7C8 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FD8F792AE8055400F0C7C8 /* Color+Extension.swift */; };
 		D9458E392AB47BA2000A4890 /* StarJedi_2.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D9458E382AB47BA2000A4890 /* StarJedi_2.ttf */; };
 		D964B3E82AB1D5D800859E1C /* Star_Wars_Version4App.swift in Sources */ = {isa = PBXBuildFile; fileRef = D964B3E72AB1D5D800859E1C /* Star_Wars_Version4App.swift */; };
 		D964B3EA2AB1D5D800859E1C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D964B3E92AB1D5D800859E1C /* ContentView.swift */; };
@@ -45,6 +46,7 @@
 		47BA62D22AC2F4C000F1DC95 /* Characters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Characters.swift; sourceTree = "<group>"; };
 		47BA62D42AC2F50600F1DC95 /* CharactersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersViewModel.swift; sourceTree = "<group>"; };
 		47BA62D62AC2F56E00F1DC95 /* DetailViewCharacters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewCharacters.swift; sourceTree = "<group>"; };
+		47FD8F792AE8055400F0C7C8 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		D9458E372AB47B88000A4890 /* Star-Wars-Version4-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Star-Wars-Version4-Info.plist"; sourceTree = SOURCE_ROOT; };
 		D9458E382AB47BA2000A4890 /* StarJedi_2.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = StarJedi_2.ttf; sourceTree = "<group>"; };
 		D964B3E42AB1D5D800859E1C /* Star_Wars_Version4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Star_Wars_Version4.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -84,6 +86,7 @@
 		D964B3E62AB1D5D800859E1C /* Star_Wars_Version4 */ = {
 			isa = PBXGroup;
 			children = (
+				47FD8F792AE8055400F0C7C8 /* Color+Extension.swift */,
 				472499B72AE2C1D500A5C580 /* PlanetsView.swift */,
 				472499BC2AE2C1D500A5C580 /* ShipsView.swift */,
 				472499BB2AE2C1D500A5C580 /* Species.swift */,
@@ -203,6 +206,7 @@
 				47BA62D32AC2F4C000F1DC95 /* Characters.swift in Sources */,
 				472499C32AE2C1D500A5C580 /* ShipsView.swift in Sources */,
 				47BA62D52AC2F50600F1DC95 /* CharactersViewModel.swift in Sources */,
+				47FD8F7A2AE8055400F0C7C8 /* Color+Extension.swift in Sources */,
 				472499C22AE2C1D500A5C580 /* Species.swift in Sources */,
 				472499B42AE2C0CD00A5C580 /* Planet.swift in Sources */,
 			);

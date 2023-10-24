@@ -20,7 +20,7 @@ struct TextView: View {
             .font(Font.custom(typeFont, size: CGFloat(sizeFont)))
             .frame(maxWidth: .infinity, alignment: Alignment(horizontal: texthalignment, vertical: .center))
            .multilineTextAlignment(textmhalignment) // Corrigido aqui
-            .foregroundColor(Color(red: 1.0, green: 0.91, blue: 0.12))
+           .foregroundColor(Color.primaryColor)
     }
 }
 

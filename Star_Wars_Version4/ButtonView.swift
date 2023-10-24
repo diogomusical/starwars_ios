@@ -10,13 +10,13 @@ import SwiftUI
 struct ButtonView: View {
     @State internal var text: String
     @State internal var typeFont: String = "StarJediSpecialEdition"
-    @State internal var sizeFont: Double
+    @State internal var sizeFont: Double = 32
     var body: some View {
         Rectangle()
             .foregroundColor(.clear)
             //.frame(width:  350, height: 45)
             .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
-            .background(Color(red: 1.0, green: 0.91, blue: 0.12))
+            .background(Color.primaryColor)
             .cornerRadius(36)
             .overlay(
         Text(text)

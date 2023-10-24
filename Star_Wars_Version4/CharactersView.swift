@@ -13,6 +13,19 @@ enum GenderFilter: String, CaseIterable {
     case other = "n/a"
 }
 
+enum SpeciesFilter: String, CaseIterable {
+    case human = "Human"
+    case droid = "Droid"
+    case wookiee = "Wookiee"
+    case rodian = "Rodian"
+    case hutt = "Hutt"
+    case yodas = "Yoda's species"
+    case trandoshan = "Trandoshan"
+    case monCalamari = "Mon Calamari"
+    case ewok = "Ewok"
+    case sullustan = "Sullustan"
+}
+
 struct CharactersView: View {
     @State private var characters: [Character] = []
     @State private var isAPILoaded = false
@@ -118,25 +131,26 @@ struct CharactersView: View {
                         .frame(width: 118, height: 71)
                     HStack {
                         TextField("Search", text: $searchTerm)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())}
-
-                   
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .padding(16)
+                    }
 
                     HStack {
                         HStack{
+                            Button(action: {
+                                isSheetPresented.toggle() // Mostra a sheet ao pressionar o botão
+                            }) {
+                                Image("sliders")
+                                    .resizable()
+                                    .frame(width: 24, height: 24)
+                            }
+                            .sheet(isPresented: $isSheetPresented) {
+                                FilterSheetView(selectedGenderFilters: $selectedGenderFilters)
+                            }
+                            .background(selectedGenderFilters.isEmpty ? Color.clear : Color.primaryColor)
+                        }
+                        .padding()
 
-                             Button(action: {
-                                 isSheetPresented.toggle() // Mostra a sheet ao pressionar o botão
-                             }) {
-                                 Image("sliders")
-                                     .resizable()
-                                     .frame(width: 24, height: 24)
-                             }
-                             .sheet(isPresented: $isSheetPresented) {
-                                 FilterSheetView(selectedGenderFilters: $selectedGenderFilters)
-                             }
-                         }
-                         .padding()
                         Button(action: {
                             sortBy = 0 // Ordenar por nome
                         }) {
@@ -144,12 +158,12 @@ struct CharactersView: View {
                                 .frame(width: 78, height: 25)
                                 .font(Font.custom("StarJedi Special Edition", size: 14))
                                 .multilineTextAlignment(.center)
-                                .background(sortBy == 0 ? Color(red: 1, green: 0.91, blue: 0.12) : Color.white)
+                                .background(sortBy == 0 ? Color.primaryColor : Color.white)
                                 .cornerRadius(36)
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 36)
                                         .inset(by: 0.5)
-                                        .stroke(Color(red: 1, green: 0.91, blue: 0.12), lineWidth: 1)
+                                        .stroke(Color.primaryColor, lineWidth: 1)
                                 )
                         }
                         .foregroundColor(.black)
@@ -161,12 +175,12 @@ struct CharactersView: View {
                                 .frame(width: 78, height: 25)
                                 .font(Font.custom("StarJedi Special Edition", size: 14))
                                 .multilineTextAlignment(.center)
-                                .background(sortBy == 1 ? Color(red: 1, green: 0.91, blue: 0.12) : Color.white)
+                                .background(sortBy == 1 ? Color.primaryColor : Color.white)
                                 .cornerRadius(36)
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 36)
                                         .inset(by: 0.5)
-                                        .stroke(Color(red: 1, green: 0.91, blue: 0.12), lineWidth: 1)
+                                        .stroke(Color.primaryColor, lineWidth: 1)
                                 )
                         }
                         .foregroundColor(.black)
@@ -174,15 +188,26 @@ struct CharactersView: View {
                         Button(action: {
                             isAscendingOrder.toggle()
                         }) {
-                            if isAscendingOrder {Image("down_yellow").rotationEffect(.degrees(180)) }
-                            else {Image("up_white")}
+                            if isAscendingOrder {Image("up").frame(width: 48, height: 25)
+                                    .shadow(color: .black.opacity(0.25), radius: 2, x: 0, y: 4)
+                                .background(Color.primaryColor)}
+                            else {Image("up").frame(width: 48, height: 25)
+                                    .shadow(color: .black.opacity(0.25), radius: 2, x: 0, y: 4)
+                                .background(Color.white)}
                         }
 
                         Button(action: {
                             isAscendingOrder.toggle()
                         }) {
-                            if isAscendingOrder {Image("up_white").rotationEffect(.degrees(180))}
-                            else {Image("down_yellow") }
+                            if isAscendingOrder {
+                                Image("down")
+                                    .frame(width: 48, height: 25)
+                                    .shadow(color: .black.opacity(0.25), radius: 2, x: 0, y: 4)
+                                .background(Color.white)}
+                            else {Image("down")
+                                    .frame(width: 48, height: 25)
+                                    .shadow(color: .black.opacity(0.25), radius: 2, x: 0, y: 4)
+                                .background(Color.primaryColor)}
                         }
                     }
                     .padding()
@@ -192,7 +217,7 @@ struct CharactersView: View {
                             NavigationLink(destination: CharacterViewDetail(character: filteredCharacters[index])) {
                                 Text(filteredCharacters[index].name.lowercased())
                                     .font(Font.custom("StarJedi Special Edition", size: 20))
-                                    .foregroundColor(Color(red: 1, green: 0.91, blue: 0.12))
+                                    .foregroundColor(Color.primaryColor)
                                     .frame(maxWidth: .infinity, alignment: .center)
                             }
                             .listRowBackground(Color.clear)
@@ -220,50 +245,41 @@ struct FilterSheetView: View {
 
     var body: some View {
         VStack {
-            List {
-                Section(header: Text("Gender").font(Font.custom("StarJedi Special Edition", size: 16)).foregroundColor(Color(red: 1, green: 0.91, blue: 0.12))) { // Adiciona uma seção com o nome "Gender"
-                    LazyHGrid(rows: [GridItem(.flexible())], content: {
-                        ForEach(GenderFilter.allCases, id: \.self) { gender in
-                            Button(action: {
-                                if selectedGenderFilters.contains(gender) {
-                                    selectedGenderFilters.remove(gender)
-                                } else {
-                                    selectedGenderFilters.insert(gender)
-                                }
-                            }) {
-                                Text(gender.rawValue.capitalized)
-                                    .padding(8)
-                                    .background(selectedGenderFilters.contains(gender) ? Color(red: 1, green: 0.91, blue: 0.12) : .white)
-                                    .cornerRadius(8)
-                                    .font(Font.custom("StarJedi Special Edition", size: 16))
-                                    .multilineTextAlignment(.center)
-                                    .foregroundColor(.black)
-                            }
+            HStack {
+                ForEach(GenderFilter.allCases, id: \.self) { gender in
+                    Button(action: {
+                        if selectedGenderFilters.contains(gender) {
+                            selectedGenderFilters.remove(gender)
+                        } else {
+                            selectedGenderFilters.insert(gender)
                         }
-                    })
-                    .listRowBackground(Color.clear)
-                    .listRowSeparator(.hidden)
-                    .listRowInsets(EdgeInsets()) // Para remover o espaço à esquerda
+                    }) {
+                        Text(gender.rawValue.capitalized)
+                            .padding(8)
+                            .background(selectedGenderFilters.contains(gender) ? Color.primaryColor : .white)
+                            .cornerRadius(8)
+                            .font(Font.custom("StarJedi Special Edition", size: 16))
+                            .multilineTextAlignment(.center)
+                            .foregroundColor(.black)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 8)
+                                    .stroke(Color.black, lineWidth: 1) // Adiciona a borda preta
+                            )
+                    }
                 }
-            }.listStyle(PlainListStyle())
-                .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)) // Remove o espaço em branco das células
-                .background(.black)
-          //  .listStyle(PlainListStyle())
-           // .padding()
-           // .background(Color.black) // Adiciona fundo preto à lista
+            }
+            .padding()
+            .background(Color.black) // Adiciona fundo preto à lista
 
             Spacer()
 
-            Button("Fechar") {
-                presentationMode.wrappedValue.dismiss()
-            }
+            ButtonView(text: "Search")
+                .frame(height: 48)
             .padding()
         }
+        .background(Color.black) // Define o fundo da VStack como preto
     }
 }
-
-
-
 
 
 struct CharactersView_Previews: PreviewProvider {
@@ -271,3 +287,4 @@ struct CharactersView_Previews: PreviewProvider {
         CharactersView()
     }
 }
+

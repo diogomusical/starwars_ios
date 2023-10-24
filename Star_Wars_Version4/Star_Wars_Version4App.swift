@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct Star_Wars_Version4App: App {
+ struct Star_Wars_Version4App: App {
     
     init(){
        printFonts()
