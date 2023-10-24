@@ -7,7 +7,11 @@
 
 import SwiftUI
 
-import SwiftUI
+enum GenderFilter: String, CaseIterable {
+    case male = "male"
+    case female = "female"
+    case other = "n/a"
+}
 
 struct CharactersView: View {
     @State private var characters: [Character] = []
@@ -17,6 +21,7 @@ struct CharactersView: View {
     @State private var isAscendingOrder = true
     @State private var sortBy = 0 // 0 para nome, 1 para ano de nascimento
     @State private var isSheetPresented = false // Adicionado para controlar a apresentação da sheet
+    @State private var selectedGenderFilters: Set<GenderFilter> = Set(GenderFilter.allCases) // Permitir múltiplos filtros
 
     var resultsSearch: [Character] {
         var sortedCharacters = characters
@@ -89,6 +94,16 @@ struct CharactersView: View {
         }.resume()
     }
 
+    var filteredCharacters: [Character] {
+        resultsSearch.filter { character in
+            if selectedGenderFilters.isEmpty {
+                return true // Retorna todos se nenhum filtro estiver selecionado
+            } else {
+                return selectedGenderFilters.contains(GenderFilter(rawValue: character.gender) ?? .other)
+            }
+        }
+    }
+
     var body: some View {
         NavigationView {
             if isLoading {
@@ -101,26 +116,27 @@ struct CharactersView: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 118, height: 71)
-
                     HStack {
                         TextField("Search", text: $searchTerm)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .textFieldStyle(RoundedBorderTextFieldStyle())}
 
-                        
-                    }
-                    .padding()
+                   
 
                     HStack {
-                        Button(action: {
-                            isSheetPresented.toggle() // Mostra a sheet ao pressionar o botão
-                        }) {
-                            Image("sliders")
-                                .resizable()
-                                .frame(width: 24, height: 24)
-                        }
-                        .sheet(isPresented: $isSheetPresented) {
-                            FilterSheetView()
-                        }
+                        HStack{
+
+                             Button(action: {
+                                 isSheetPresented.toggle() // Mostra a sheet ao pressionar o botão
+                             }) {
+                                 Image("sliders")
+                                     .resizable()
+                                     .frame(width: 24, height: 24)
+                             }
+                             .sheet(isPresented: $isSheetPresented) {
+                                 FilterSheetView(selectedGenderFilters: $selectedGenderFilters)
+                             }
+                         }
+                         .padding()
                         Button(action: {
                             sortBy = 0 // Ordenar por nome
                         }) {
@@ -172,9 +188,9 @@ struct CharactersView: View {
                     .padding()
 
                     List {
-                        ForEach(resultsSearch.indices, id: \.self) { index in
-                            NavigationLink(destination: CharacterViewDetail(character: resultsSearch[index])) {
-                                Text(resultsSearch[index].name.lowercased())
+                        ForEach(filteredCharacters.indices, id: \.self) { index in
+                            NavigationLink(destination: CharacterViewDetail(character: filteredCharacters[index])) {
+                                Text(filteredCharacters[index].name.lowercased())
                                     .font(Font.custom("StarJedi Special Edition", size: 20))
                                     .foregroundColor(Color(red: 1, green: 0.91, blue: 0.12))
                                     .frame(maxWidth: .infinity, alignment: .center)
@@ -200,16 +216,53 @@ struct CharactersView: View {
 
 struct FilterSheetView: View {
     @Environment(\.presentationMode) var presentationMode
+    @Binding var selectedGenderFilters: Set<GenderFilter>
 
     var body: some View {
-        // Conteúdo da sua Sheet de filtros aqui
-        Text("Filtros")
-            .padding()
-            .onTapGesture {
+        VStack {
+            List {
+                Section(header: Text("Gender").font(Font.custom("StarJedi Special Edition", size: 16)).foregroundColor(Color(red: 1, green: 0.91, blue: 0.12))) { // Adiciona uma seção com o nome "Gender"
+                    LazyHGrid(rows: [GridItem(.flexible())], content: {
+                        ForEach(GenderFilter.allCases, id: \.self) { gender in
+                            Button(action: {
+                                if selectedGenderFilters.contains(gender) {
+                                    selectedGenderFilters.remove(gender)
+                                } else {
+                                    selectedGenderFilters.insert(gender)
+                                }
+                            }) {
+                                Text(gender.rawValue.capitalized)
+                                    .padding(8)
+                                    .background(selectedGenderFilters.contains(gender) ? Color(red: 1, green: 0.91, blue: 0.12) : .white)
+                                    .cornerRadius(8)
+                                    .font(Font.custom("StarJedi Special Edition", size: 16))
+                                    .multilineTextAlignment(.center)
+                                    .foregroundColor(.black)
+                            }
+                        }
+                    })
+                    .listRowBackground(Color.clear)
+                    .listRowSeparator(.hidden)
+                    .listRowInsets(EdgeInsets()) // Para remover o espaço à esquerda
+                }
+            }.listStyle(PlainListStyle())
+                .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)) // Remove o espaço em branco das células
+                .background(.black)
+          //  .listStyle(PlainListStyle())
+           // .padding()
+           // .background(Color.black) // Adiciona fundo preto à lista
+
+            Spacer()
+
+            Button("Fechar") {
                 presentationMode.wrappedValue.dismiss()
             }
+            .padding()
+        }
     }
 }
+
+
 
 
 
@@ -218,5 +271,3 @@ struct CharactersView_Previews: PreviewProvider {
         CharactersView()
     }
 }
-
-
