@@ -78,8 +78,6 @@ struct SplashScreen: View {
                     self.isActive = true
                 }
             }
-                    
-            
         }
     }
 }
